@@ -10,6 +10,10 @@
   --color-vanilla: #E8D8C4;
 }
 
+body{
+  @apply bg-vanilla
+}
+
 .animate-nav{
   @apply relative after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-full after:h-[2px] after:bg-coffee after:transition-all after:duration-500 after:scale-x-0 after:origin-right hover:after:scale-x-100
 }

@@ -39,9 +39,11 @@ const Header:React.FC = () => {
         ))}
       </nav>
 
-      <button className='cursor-pointer px-8 py-1.5 font-playfair bg-coffee text-vanilla'>
-        Login
-      </button>
+      <Link to={'/sign-in'}>
+        <button className='cursor-pointer px-8 py-1.5 font-playfair bg-coffee text-vanilla'>
+          Login
+        </button>
+      </Link>
     </header>
   )
 }
