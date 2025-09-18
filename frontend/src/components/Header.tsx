@@ -33,14 +33,14 @@ const Header:React.FC = () => {
           <Link to={link.link}>
             <p 
               key={index}
-              className='font-playfair py-1 text-xl transition-all duration-500 animate-nav hover:text-coffee'  
+              className='font-playfair py-1 text-xl transition-all duration-500 animate-nav hover:text-coco'  
             >{link.name}</p>
           </Link>
         ))}
       </nav>
 
       <Link to={'/sign-in'}>
-        <button className='cursor-pointer px-8 py-1.5 font-playfair bg-coffee text-vanilla'>
+        <button className='cursor-pointer px-8 py-1.5 font-playfair bg-coco text-creme'>
           Login
         </button>
       </Link>
