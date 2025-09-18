@@ -24,7 +24,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-14 mt-10'>
+      <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 px-14 mt-10'>
         {collections.map((card, index) => (
           <CollectionCard card={card} key={index}/>
         ))}
