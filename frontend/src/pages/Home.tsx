@@ -44,7 +44,7 @@ const Home: React.FC = () => {
           Discover our vintage collections — from timeless tops to classic pants
           and statement coats.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-14 mt-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-14 mt-6 w-full">
           {collections.map((card, index) => (
             <CollectionCard card={card} key={index} />
           ))}
@@ -52,7 +52,7 @@ const Home: React.FC = () => {
       </section>
 
       {/**About section */}
-      <section className="px-18 py-10 flex justify-around items-center">
+      <section className="px-18 py-10 flex justify-around items-center gap-8 max-md:flex-wrap">
         <div className="h-96 w-[355px] flex justify-center">
           <img
             src={assets.about_photo}
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
       </section>
 
       {/*Best products section */}
-      <section className="px-14 pb-10">
+      <section className="px-14 pb-10 flex">
         <div className="flex flex-col gap-3 w-72">
           <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">
             Best Seller Product
@@ -91,7 +91,7 @@ const Home: React.FC = () => {
       </section>
 
       <section>
-        
+
       </section>
     </>
   );
