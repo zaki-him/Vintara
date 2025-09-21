@@ -37,8 +37,13 @@ const Home: React.FC = () => {
 
       {/*Collections section */}
       <section className="flex flex-col items-center w-full mt-5 py-8 gap-4 bg-white">
-        <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold">New Collection</h1>
-        <p className="font-playfair text-[15px] text-center md:text-xl text-wine">Discover our vintage collections — from timeless tops to classic pants and statement coats.</p>
+        <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold">
+          New Collection
+        </h1>
+        <p className="font-playfair text-[15px] text-center md:text-xl text-wine">
+          Discover our vintage collections — from timeless tops to classic pants
+          and statement coats.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-14 mt-6 w-full">
           {collections.map((card, index) => (
             <CollectionCard card={card} key={index} />
@@ -56,15 +61,38 @@ const Home: React.FC = () => {
           />
         </div>
         <div className="w-[355px] flex flex-col gap-3">
-          <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">Best Fashion You Can Find</h1>
-          <p className="text-[16px] md:text-xl font-playfair">Our love for old-school fashion inspired us to create a space where vintage lives on. Every piece we share has a story, a touch of nostalgia, and a style that feels timeless. We’re here to bring you classics that let you stand out while staying true to the charm of the past.</p>
-          <div>
-
-          </div>
+          <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">
+            Best Fashion You Can Find
+          </h1>
+          <p className="text-[16px] md:text-xl font-playfair">
+            Our love for old-school fashion inspired us to create a space where
+            vintage lives on. Every piece we share has a story, a touch of
+            nostalgia, and a style that feels timeless. We’re here to bring you
+            classics that let you stand out while staying true to the charm of
+            the past.
+          </p>
+          <div></div>
         </div>
       </section>
 
-      
+      {/*Best products section */}
+      <section className="px-14 pb-10">
+        <div className="flex flex-col gap-3 w-72">
+          <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">
+            Best Seller Product
+          </h1>
+          <p className="text-[16px] md:text-[18px] font-playfair">
+            Step into our best sellers — timeless pieces that our community
+            can’t get enough of. These classics have been loved, worn, and
+            treasured, and they continue to stand the test of time.
+          </p>
+        </div>
+        <div></div>
+      </section>
+
+      <section>
+        
+      </section>
     </>
   );
 };
