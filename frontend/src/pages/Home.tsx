@@ -36,7 +36,7 @@ const Home: React.FC = () => {
       </section>
 
       {/*Collections section */}
-      <section className="flex flex-col items-center w-full mt-10 gap-4">
+      <section className="flex flex-col items-center w-full mt-5 py-8 gap-4 bg-white">
         <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold">New Collection</h1>
         <p className="font-playfair text-[15px] text-center md:text-xl text-wine">Discover our vintage collections — from timeless tops to classic pants and statement coats.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-14 mt-6 w-full">
@@ -47,8 +47,21 @@ const Home: React.FC = () => {
       </section>
 
       {/**About section */}
-      <section>
-        
+      <section className="px-18 mt-10 flex justify-around items-center">
+        <div className="h-96 w-[355px] flex justify-center">
+          <img
+            src={assets.about_photo}
+            alt=""
+            className="w-full rounded-[20%_0%_0%_0%]"
+          />
+        </div>
+        <div className="w-[355px]">
+          <h1>Best Fashion You Can Find</h1>
+          <p>Our love for old-school fashion inspired us to create a space where vintage lives on. Every piece we share has a story, a touch of nostalgia, and a style that feels timeless. We’re here to bring you classics that let you stand out while staying true to the charm of the past.</p>
+          <div>
+
+          </div>
+        </div>
       </section>
     </>
   );
