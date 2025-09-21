@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
-import { assets, collections } from "../assets/assets";
+import { assets, collections, peopleReviews } from "../assets/assets";
 import CollectionCard from "../components/CollectionCard";
+import ReviewCard from "../components/ReviewCard";
 
 const Home: React.FC = () => {
   return (
@@ -90,8 +91,12 @@ const Home: React.FC = () => {
         <div></div>
       </section>
 
-      <section>
-
+      <section className="flex flex-col items-center gap-6 bg-white py-10">
+          <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">What People Say About Us</h1>
+          <p className="text-[16px] md:text-[18px] font-playfair">See what our customers are saying about their favorite vintage finds.</p>
+          {peopleReviews.map((review, index) => (
+            <ReviewCard review={review} key={index}/>
+          ))}
       </section>
     </>
   );

@@ -26,3 +26,5 @@ export const collections = [
     path: '',
   },
 ]
+
+export const peopleReviews = []
