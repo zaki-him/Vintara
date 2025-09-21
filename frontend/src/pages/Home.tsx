@@ -13,7 +13,7 @@ const Home: React.FC = () => {
             Find The Best Fashion Style For You
           </h1>
 
-          <p className="text-[15px] md:text-xl font-playfair">
+          <p className="text-[16px] md:text-xl font-playfair">
             Step into timeless style with Vintara — where every piece is
             inspired by the golden eras of fashion. From classic cuts to retro
             details, we bring back the charm of yesterday for today's world.
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
       </section>
 
       {/**About section */}
-      <section className="px-18 mt-10 flex justify-around items-center">
+      <section className="px-18 py-10 flex justify-around items-center">
         <div className="h-96 w-[355px] flex justify-center">
           <img
             src={assets.about_photo}
@@ -55,14 +55,16 @@ const Home: React.FC = () => {
             className="w-full rounded-[20%_0%_0%_0%]"
           />
         </div>
-        <div className="w-[355px]">
-          <h1>Best Fashion You Can Find</h1>
-          <p>Our love for old-school fashion inspired us to create a space where vintage lives on. Every piece we share has a story, a touch of nostalgia, and a style that feels timeless. We’re here to bring you classics that let you stand out while staying true to the charm of the past.</p>
+        <div className="w-[355px] flex flex-col gap-3">
+          <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">Best Fashion You Can Find</h1>
+          <p className="text-[16px] md:text-xl font-playfair">Our love for old-school fashion inspired us to create a space where vintage lives on. Every piece we share has a story, a touch of nostalgia, and a style that feels timeless. We’re here to bring you classics that let you stand out while staying true to the charm of the past.</p>
           <div>
 
           </div>
         </div>
       </section>
+
+      
     </>
   );
 };
