@@ -2,16 +2,12 @@ import React from 'react'
 import { assets } from '../assets/assets'
 import { Link } from 'react-router'
 
-const SignUp: React.FC = () => {
+const SignIn: React.FC = () => {
   return (
     <section className='flex justify-center items-center min-h-screen font-playfair'>
       <div className='flex flex-col items-center gap-2 w-96 shadow-2xl shadow-coco px-4 py-10 rounded-2xl bg-white'>
-        <h1 className='text-center text-3xl font-playfair text-wine'>Join Vintara</h1>
+        <h1 className='text-center text-3xl font-playfair text-wine'>Welcome to Vintara</h1>
         <form action="" className='flex flex-col pb-3 gap-2 w-full'>
-          <div className='flex flex-col gap-1'>
-            <label htmlFor="">Username</label>
-            <input type="text"  className='input-tag' placeholder='John Doe'/>
-          </div>
           <div className='flex flex-col gap-1'>
             <label htmlFor="">Email</label>
             <input type="email" className='input-tag' placeholder='example@gmail.com'/>
@@ -23,7 +19,7 @@ const SignUp: React.FC = () => {
         </form>
         <hr className='text-wine w-40'/>
         <div className='flex flex-col items-center gap-4'>
-          <h3>Or sign up with:</h3>
+          <h3>Or sign in with:</h3>
           <div className='flex gap-6'>
             <button className='cursor-pointer'>
               <img src={assets.github_logo} alt="" className='size-8' />
@@ -33,9 +29,9 @@ const SignUp: React.FC = () => {
             </button>
           </div>
         </div>
-        <p>Already have an account?
+        <p>Don't have an account?
           <Link to={'/sign-in'}>
-            <span className='text-wine'> Sign In</span>
+            <span className='text-wine'> Register</span>
           </Link>
         </p>
       </div>
@@ -43,4 +39,4 @@ const SignUp: React.FC = () => {
   )
 }
 
-export default SignUp
+export default SignIn

@@ -3,10 +3,14 @@ import coats_collection_photo from './coat.jpg'
 import pants_collection_photo from './pants.jpg'
 import tops_collection_photo from './tops.jpg'
 import about_photo from './about.jpg'
+import google_logo from './Made by Google.jpg'
+import github_logo from './Build software better, together.jpg'
 
 export const assets = {
   hero_photo,
-  about_photo
+  about_photo,
+  github_logo,
+  google_logo
 }
 
 export const collections = [
