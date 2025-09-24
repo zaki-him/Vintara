@@ -3,10 +3,12 @@ import { Link } from "react-router";
 import { assets, collections, peopleReviews } from "../assets/assets";
 import CollectionCard from "../components/CollectionCard";
 import ReviewCard from "../components/ReviewCard";
+import Header from "../components/Header";
 
 const Home: React.FC = () => {
   return (
     <>
+      <Header />
       {/*Hero Section */}
       <section className="flex justify-around items-center gap-10 max-md:flex-wrap px-16 mt-10 bg-[#F2E6DC]">
         <div className="flex flex-col gap-6 max-w-80 lg:max-w-xl max-md:max-w-sm">

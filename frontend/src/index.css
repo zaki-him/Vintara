@@ -18,3 +18,11 @@ body{
 .animate-nav{
   @apply relative after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-full after:h-[2px] after:bg-coco after:transition-all after:duration-500 after:scale-x-0 after:origin-right hover:after:scale-x-100
 }
+
+label{
+  @apply text-sm
+}
+
+.input-tag{
+  @apply outline-none p-1.5 border border-coco rounded-2xl
+}
