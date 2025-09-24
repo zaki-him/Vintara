@@ -91,12 +91,14 @@ const Home: React.FC = () => {
         <div></div>
       </section>
 
-      <section className="flex flex-col items-center gap-6 bg-white py-10">
+      <section className="flex flex-col items-center gap-6 bg-white py-10 px-10">
           <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">What People Say About Us</h1>
           <p className="text-[16px] md:text-[18px] font-playfair">See what our customers are saying about their favorite vintage finds.</p>
-          {peopleReviews.map((review, index) => (
-            <ReviewCard review={review} key={index}/>
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {peopleReviews.map((review, index) => (
+              <ReviewCard review={review} key={index}/>
+            ))}
+          </div>
       </section>
     </>
   );

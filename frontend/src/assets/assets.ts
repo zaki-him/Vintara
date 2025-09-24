@@ -27,4 +27,26 @@ export const collections = [
   },
 ]
 
-export const peopleReviews = []
+export const peopleReviews = [
+  {
+    name: 'Adam T',
+    review: 'The vintage jackets I bought are top quality and really stand out.',
+    feedback: 'I’ll definitely shop here again for more unique pieces.'
+
+  },
+  {
+    name: 'Karim H',
+    review: 'Delivery was quick and the clothes looked even better than the photos.',
+    feedback: 'Great service, I’m really satisfied.'
+  },
+  {
+    name: 'Omar K',
+    review: 'Finally a store that actually understands old-school fashion.',
+    feedback: 'I found exactly what I was looking for without spending hours searching.'
+  },
+  {
+    name: 'Lucas P',
+    review: 'The prices are fair and the quality is excellent.',
+    feedback: 'I’ve already told my friends to check this place out.'
+  },
+]
