@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import hashPassword from "../Middlewares/hashPassword.js";
+import bcrypt from 'bcrypt'
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -19,3 +21,11 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.pre("save", hashPassword)
+
+userSchema.methods.comparePaasword = async function (password) {
+  return bcrypt.compare(password, this.password)
+}
+
+const User = mongoose.model("User", userSchema)
+
+export default User
