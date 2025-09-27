@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRouter from "./Routers/authRouter.js";
 import userRouter from "./Routers/userRouter.js";
+import productRouter from "./Routers/productRouter.js";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ server.use(express.json())
 
 server.use('/auth', authRouter)
 server.use('/users', userRouter)
+server.use('/products', productRouter)
 
 connectDB().then(() => {
   server.listen(3000, () => {
