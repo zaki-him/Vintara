@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-const protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   const authHeader = req.header('Authorization')
 
   if(!authHeader || !authHeader.startsWith("Bearer")){
@@ -11,7 +11,7 @@ const protect = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    req.body = decoded
+    req.user = decoded
     next()
   } catch (error) {
     res.status(400).json({ message: 'Token not valid'})
