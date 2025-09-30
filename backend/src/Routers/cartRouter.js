@@ -42,8 +42,17 @@ cartRouter.post('/add', protect, async (req, res) => {
 //delete from cart
 cartRouter.delete('/delete/:productId', protect, async (req, res) => {
   try {
-    const { productId } = req.body
-    const 
+    const { productId } = req.params
+    let cart = await Cart.findOne({ user: req.user.id })
+
+    if(!cart){
+      return res.status(404).json({ message: 'Cart not found' })
+    }
+
+    cart.items = cart.items.filter(i => i.product.toString() !== productId)
+    await cart.save()
+
+    res.status(200).json({ message: 'Item deleted from cart' })
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
