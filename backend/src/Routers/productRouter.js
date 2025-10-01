@@ -40,24 +40,29 @@ productRouter.post(
           .json({ message: "Please fill the essential fields (name, prices)" });
       }
 
-      const uploadPromises = req.files.map((file) => {
-        return new Promise((resolve, reject) => {
-          const stream = cloudinary.uploader.upload_stream(
-            { folder: "Product" },
-            (error, results) => {
-              if(error){
-                reject(error)
-              }
-              else{
-                resolve(results.secure_url)
-              }
-            }
-          )
-          stream.end(file.buffer)
-        })
-      })
+      let imageURLs
 
-      const imageURLs = await Promise.all(uploadPromises)
+      if(req.files && req.files.length > 0){
+        const uploadPromises = req.files.map((file) => {
+          return new Promise((resolve, reject) => {
+            const stream = cloudinary.uploader.upload_stream(
+              { folder: "Product" },
+              (error, results) => {
+                if(error){
+                  reject(error)
+                }
+                else{
+                  resolve(results.secure_url)
+                }
+              }
+            )
+
+            stream.end(file.buffer)
+          })
+        })
+
+        imageURLs = await Promise.all(uploadPromises)
+      }
 
       const product = new Product({
         name,
@@ -66,7 +71,7 @@ productRouter.post(
         prices,
         category,
         stock,
-        images: imageURLs,
+        ...(imageURLs && { images: imageURLs })
       });
       await product.save();
 
