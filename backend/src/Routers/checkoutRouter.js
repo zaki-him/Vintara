@@ -30,7 +30,8 @@ checkoutRouter.post('/create-checkout-session', protect, async (req, res) => {
       line_items,
       mode: "payment",
       success_url: "http://localhost:3000/success", // user re-directed to success path
-      cancel_url: "http://localhost:3000/cancel" // user re-directed to cancel path
+      cancel_url: "http://localhost:3000/cancel", // user re-directed to cancel path
+      client_reference_id: req.user.id  
     })
 
     res.status(200).json({ url: session.url }) // sends success_url/cancel_url

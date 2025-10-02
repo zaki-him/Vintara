@@ -7,11 +7,13 @@ import productRouter from "./Routers/productRouter.js";
 import cartRouter from "./Routers/cartRouter.js";
 import orderRouter from "./Routers/orderRouter.js";
 import checkoutRouter from "./Routers/checkoutRouter.js";
+import webhookRouter from "./Routers/webhookRouter.js";
 
 dotenv.config();
 
 const server = express();
 
+server.use('/webhook', webhookRouter)
 server.use(express.json())
 
 server.use('/auth', authRouter)
