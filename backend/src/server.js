@@ -6,6 +6,7 @@ import userRouter from "./Routers/userRouter.js";
 import productRouter from "./Routers/productRouter.js";
 import cartRouter from "./Routers/cartRouter.js";
 import orderRouter from "./Routers/orderRouter.js";
+import checkoutRouter from "./Routers/checkoutRouter.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ server.use('/users', userRouter)
 server.use('/products', productRouter)
 server.use('/cart', cartRouter)
 server.use('/orders', orderRouter)
+server.use('/checkout', checkoutRouter)
 
 connectDB().then(() => {
   server.listen(3000, () => {
