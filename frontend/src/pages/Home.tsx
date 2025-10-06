@@ -10,7 +10,7 @@ const Home: React.FC = () => {
     <>
       <Header />
       {/*Hero Section */}
-      <section className="flex justify-around items-center gap-10 max-md:flex-wrap px-16 py-10 mt-10 bg-[#F2E6DC]">
+      <section className="flex justify-around items-center gap-10 max-md:flex-wrap px-16 py-10 mt-10 bg-creme">
         <div className="flex flex-col gap-6 max-w-80 lg:max-w-xl max-md:max-w-sm">
           <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
             Find The Best Fashion Style For You

@@ -27,7 +27,7 @@ const Header: React.FC = () => {
   const isLoggedIn = !!user; //convert the value into a boolean
 
   return (
-    <header className="flex justify-between items-center px-8 md:px-14 lg:px-20 py-6 bg-vanilla">
+    <header className="flex justify-between items-center px-8 md:px-14 lg:px-20 py-6 bg-creme">
       <Link to={"/"}>
         <h1 className="font-playfair text-3xl font-bold">Vintara</h1>
       </Link>

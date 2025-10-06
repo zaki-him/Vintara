@@ -1,9 +1,14 @@
 import React from 'react'
 
 interface Product {
-  name: string,
-  price: string,
-  img: string
+  _id: string;
+  name: string;
+  description?: string;
+  sizes?: string[];
+  prices: number;
+  category?: string;
+  stock?: number;
+  images?: string[];
 }
 
 interface ProductProps {
