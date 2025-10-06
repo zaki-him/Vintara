@@ -102,10 +102,15 @@ const CartPage: React.FC = () => {
     0
   );
 
-  if (loading) return <p className="text-coco">Loading cart...</p>;
+  if (loading){
+    return <>
+      <Header />
+      <p className="text-coco">Loading cart...</p>
+    </>;
+  } 
 
   return (
-    <div className="flex flex-col gap-8 min-h-screen bg-[#F2E6DC] px-6">
+    <div className="flex flex-col gap-8 min-h-screen bg-creme px-6">
       <Header />
       <h1 className="text-3xl font-bold mb-6 font-playfair text-coco">
         Shopping Cart

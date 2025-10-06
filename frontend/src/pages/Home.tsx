@@ -39,7 +39,10 @@ const Home: React.FC = () => {
       </section>
 
       {/*Collections section */}
-      <section className="flex flex-col items-center w-full mt-5 py-8 gap-4 bg-white">
+      <section 
+        className="flex flex-col items-center w-full mt-5 py-8 gap-4 bg-white"
+        id="collections"
+        >
         <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold">
           New Collection
         </h1>
@@ -55,7 +58,10 @@ const Home: React.FC = () => {
       </section>
 
       {/**About section */}
-      <section className="px-18 py-10 flex justify-around items-center gap-8 max-md:flex-wrap">
+      <section 
+        className="px-18 py-10 flex justify-around items-center gap-8 max-md:flex-wrap"
+        id="about"
+      >
         <div className="h-96 w-[355px] flex justify-center">
           <img
             src={assets.about_photo}

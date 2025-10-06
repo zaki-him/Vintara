@@ -1,6 +1,6 @@
 import { ShoppingCart, User } from "lucide-react";
 import React from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const Header: React.FC = () => {
   const links = [
@@ -10,19 +10,17 @@ const Header: React.FC = () => {
     },
     {
       name: "About",
-      link: "/#about",
+      link: "#about",
     },
     {
       name: "Collections",
-      link: "/#collections",
+      link: "#collections",
     },
     {
       name: "Products",
       link: "/products",
     },
   ];
-
-  const navigate = useNavigate();
 
   //check login status
   const user = localStorage.getItem("user");
@@ -36,14 +34,14 @@ const Header: React.FC = () => {
 
       <nav className="flex items-center gap-4 max-sm:hidden">
         {links.map((link, index) => (
-          <Link to={link.link}>
+          <a href={link.link} key={index}>
             <p
               key={index}
               className="font-playfair py-1 text-xl transition-all duration-500 animate-nav hover:text-coco"
             >
               {link.name}
             </p>
-          </Link>
+          </a>
         ))}
       </nav>
 
