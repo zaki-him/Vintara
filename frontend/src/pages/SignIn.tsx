@@ -1,42 +1,83 @@
-import React from 'react'
-import { assets } from '../assets/assets'
-import { Link } from 'react-router'
+import React, { useState } from "react";
+import { Link } from "react-router";
 
 const SignIn: React.FC = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Login Data:", formData);
+    // TODO: connect with backend login
+  };
+
   return (
-    <section className='flex justify-center items-center min-h-screen font-playfair'>
-      <div className='flex flex-col items-center gap-2 w-96 shadow-2xl shadow-coco px-4 py-10 rounded-2xl bg-white'>
-        <h1 className='text-center text-3xl font-playfair text-wine'>Welcome to Vintara</h1>
-        <form action="" className='flex flex-col pb-3 gap-2 w-full'>
-          <div className='flex flex-col gap-1'>
-            <label htmlFor="">Email</label>
-            <input type="email" className='input-tag' placeholder='example@gmail.com'/>
+    <section className="flex justify-center items-center min-h-screen bg-[#F2E6DC] px-6">
+      <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-8">
+        <h1 className="text-3xl md:text-4xl font-bold font-playfair text-coco mb-4 text-center">
+          Welcome Back
+        </h1>
+        <p className="text-center text-gray-600 font-playfair mb-8">
+          Log in to continue exploring timeless fashion.
+        </p>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {/* Email */}
+          <div>
+            <label className="block mb-2 text-sm font-medium font-playfair text-coco">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-wine outline-none"
+              placeholder="Enter your email"
+              required
+            />
           </div>
-          <div className='flex flex-col gap-1'>
-            <label htmlFor="">Password</label>
-            <input type="password"  className='input-tag'/>
+
+          {/* Password */}
+          <div>
+            <label className="block mb-2 text-sm font-medium font-playfair text-coco">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-wine outline-none"
+              placeholder="Enter your password"
+              required
+            />
           </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full py-2 bg-wine text-[#F2E6DC] font-playfair font-semibold rounded-lg hover:bg-[#5e0c2d] transition"
+          >
+            Sign In
+          </button>
         </form>
-        <hr className='text-wine w-40'/>
-        <div className='flex flex-col items-center gap-4'>
-          <h3>Or sign in with:</h3>
-          <div className='flex gap-6'>
-            <button className='cursor-pointer'>
-              <img src={assets.github_logo} alt="" className='size-8' />
-            </button>
-            <button className='cursor-pointer'>
-              <img src={assets.google_logo} alt="" className='size-8' />
-            </button>
-          </div>
-        </div>
-        <p>Don't have an account?
-          <Link to={'/sign-in'}>
-            <span className='text-wine'> Register</span>
+
+        <p className="text-center text-sm font-playfair mt-6">
+          Don't have an account? 
+          <Link to="/sign-up" className="pl-1 text-wine font-semibold">
+            Register
           </Link>
         </p>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
