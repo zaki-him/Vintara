@@ -8,6 +8,8 @@ import Products from './pages/Products'
 import Cart from './pages/Cart'
 import ProtectedRoute from './ProtectedRoute'
 import OrdersPage from './pages/OrdersPage'
+import ProfilePage from './pages/ProfilePage'
+
 
 const App: React.FC = () => {
   return (
@@ -26,6 +28,11 @@ const App: React.FC = () => {
         <Route path='/orders' element={
           <ProtectedRoute>
             <OrdersPage />
+          </ProtectedRoute>
+        }></Route>
+        <Route path='/profile' element={
+          <ProtectedRoute>
+            <ProfilePage />
           </ProtectedRoute>
         }></Route>
       </Routes>

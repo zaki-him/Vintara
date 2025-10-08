@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Header from "../components/Header";
 
 type User = {
+  _id: string;
   name: string;
   email: string;
   role: string;
@@ -10,34 +12,90 @@ type User = {
 };
 
 const ProfilePage: React.FC = () => {
-  // Dummy user data
-  const [user, setUser] = useState<User>({
-    name: "Zakaria Himrane",
-    email: "zakaria@example.com",
-    role: "user",
-    address: "123 Fashion Street, Algiers",
-    phone: "+213 555 123 456",
-  });
-
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
-    name: user.name,
-    address: user.address || "",
-    phone: user.phone || "",
+    name: "",
+    address: "",
+    phone: "",
   });
 
+  // Fetch user profile
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) return alert("Please log in first");
+
+        const res = await axios.get("http://localhost:3000/users/profile", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setUser(res.data.user);
+        setFormData({
+          name: res.data.user.name || "",
+          address: res.data.user.address || "",
+          phone: res.data.user.phone || "",
+        });
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  // Handle form changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleUpdate = (e: React.FormEvent) => {
+  // Update profile
+  const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    setUser({ ...user, ...formData });
-    setEditing(false);
-    alert("Profile updated successfully!");
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return alert("Please log in first");
+
+      await axios.put("http://localhost:3000/users/profile", formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setUser((prev) =>
+        prev ? { ...prev, ...formData } : (formData as unknown as User)
+      );
+      setEditing(false);
+      alert("Profile updated successfully!");
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      alert("Failed to update profile");
+    }
   };
+
+  if (loading)
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen bg-[#F2E6DC] flex items-center justify-center text-coco font-playfair">
+          Loading profile...
+        </div>
+      </>
+    );
+
+  if (!user)
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen bg-[#F2E6DC] flex items-center justify-center text-wine font-playfair">
+          No profile data found.
+        </div>
+      </>
+    );
 
   return (
     <>
