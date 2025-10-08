@@ -6,7 +6,7 @@ import SignIn from './pages/SignIn'
 import ProductDetails from './pages/ProductDetails'
 import Products from './pages/Products'
 import Cart from './pages/Cart'
-import ProtectedRoute from './protectedRoute'
+import ProtectedRoute from './ProtectedRoute'
 
 const App: React.FC = () => {
   return (
