@@ -20,14 +20,33 @@ const ProductDetails: React.FC = () => {
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
   const [loading, setLoading] = useState(true);
+  const [inCart, setInCart] = useState(false);
 
-  // TODO: change to your backend URL
-  const API_URL = `http://localhost:5000/api/products/${id}`;
+  const checkCart = async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) return;
+
+    try {
+      const res = await axios.get("http://localhost:3000/cart", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const cartData = Array.isArray(res.data) ? res.data[0] : res.data;
+      const isInCart = cartData?.items?.some(
+        (item: any) => item.product._id === id
+      );
+
+      setInCart(isInCart);
+    } catch (error) {
+      console.log("Error checking cart", error);
+    }
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(API_URL);
+        const res = await axios.get(`http://localhost:3000/products/${id}`);
         setProduct(res.data);
       } catch (err) {
         console.error("Error fetching product:", err);
@@ -37,24 +56,39 @@ const ProductDetails: React.FC = () => {
     };
 
     fetchProduct();
+    checkCart()
   }, [id]);
 
-  const handleAddToCart = async () => {
+
+  const handleCartAction = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/api/cart/add",
-        {
-          productId: product?._id,
-          quantity,
-          size: selectedSize,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+      const token = localStorage.getItem("token");
+      if (!token) return alert("Please log in first");
+
+      if (!inCart) {
+        if(selectedSize === ""){
+          return alert("Please choose a size")
         }
-      );
-      alert("Product added to cart!");
+        await axios.post(
+          "http://localhost:3000/cart/add",
+          {
+            productId: product?._id,
+            quantity,
+            size: selectedSize,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        setInCart(true)
+      }else{
+        await axios.delete(`http://localhost:3000/cart/delete/${id}`,
+          { headers: {Authorization: `Bearer ${localStorage.getItem("token")}`} }
+        )
+        setInCart(false)
+      }
     } catch (err) {
       console.error(err);
       alert("Failed to add product to cart.");
@@ -168,11 +202,11 @@ const ProductDetails: React.FC = () => {
 
         {/* Add to Cart */}
         <button
-          onClick={handleAddToCart}
+          onClick={handleCartAction}
           disabled={product.stock === 0}
           className="mt-6 w-48 bg-wine text-[#F2E6DC] py-2 rounded-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Add to Cart
+          {!inCart ? "Add to Cart" : "Remove from Cart"}
         </button>
       </div>
     </div>
