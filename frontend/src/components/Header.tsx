@@ -1,131 +1,77 @@
-import React, { useState } from "react";
-import Header from "../components/Header";
+import { Notebook, ShoppingCart, User } from "lucide-react";
+import React from "react";
+import { Link } from "react-router";
 
-type User = {
-  name: string;
-  email: string;
-  role: string;
-  address?: string;
-  phone?: string;
-};
+const Header: React.FC = () => {
+  const links = [
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "About",
+      link: "#about",
+    },
+    {
+      name: "Collections",
+      link: "#collections",
+    },
+    {
+      name: "Products",
+      link: "/products",
+    },
+  ];
 
-const ProfilePage: React.FC = () => {
-  // Dummy user data
-  const [user, setUser] = useState<User>({
-    name: "Zakaria Himrane",
-    email: "zakaria@example.com",
-    role: "user",
-    address: "123 Fashion Street, Algiers",
-    phone: "+213 555 123 456",
-  });
-
-  const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    name: user.name,
-    address: user.address || "",
-    phone: user.phone || "",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleUpdate = (e: React.FormEvent) => {
-    e.preventDefault();
-    setUser({ ...user, ...formData });
-    setEditing(false);
-    alert("Profile updated successfully!");
-  };
+  //check login status
+  const user = localStorage.getItem("user");
+  const isLoggedIn = !!user; //convert the value into a boolean
 
   return (
     <>
-      <Header />
-      <div className="min-h-screen bg-[#F2E6DC] p-8 flex flex-col items-center font-playfair">
-        <h1 className="text-3xl font-bold text-coco mb-6">Your Profile</h1>
+      <header className="flex justify-between items-center px-8 md:px-14 lg:px-20 py-6 bg-creme">
+        <Link to={"/"}>
+          <h1 className="font-playfair text-3xl font-bold">Vintara</h1>
+        </Link>
 
-        <div className="bg-white shadow-md rounded-xl p-8 w-full max-w-lg border border-[#e5d0c0]">
-          {!editing ? (
-            <>
-              <p className="text-lg text-coco mb-2">
-                <strong>Name:</strong> {user.name}
-              </p>
-              <p className="text-lg text-coco mb-2">
-                <strong>Email:</strong> {user.email}
-              </p>
-              <p className="text-lg text-coco mb-2">
-                <strong>Role:</strong> {user.role}
-              </p>
-              <p className="text-lg text-coco mb-2">
-                <strong>Address:</strong> {user.address || "Not set"}
-              </p>
-              <p className="text-lg text-coco mb-4">
-                <strong>Phone:</strong> {user.phone || "Not set"}
-              </p>
-
-              <button
-                onClick={() => setEditing(true)}
-                className="bg-wine text-[#F2E6DC] px-6 py-2 rounded-lg hover:opacity-90 transition"
+        <nav className="flex items-center gap-4 max-sm:hidden">
+          {links.map((link, index) => (
+            <a href={link.link} key={index}>
+              <p
+                key={index}
+                className="font-playfair py-1 text-xl transition-all duration-500 animate-nav hover:text-coco"
               >
-                Edit Profile
-              </button>
-            </>
-          ) : (
-            <form onSubmit={handleUpdate} className="space-y-4">
-              <div>
-                <label className="block text-coco font-semibold">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full border border-[#e5d0c0] rounded-md px-3 py-2 mt-1 focus:outline-none"
-                />
-              </div>
+                {link.name}
+              </p>
+            </a>
+          ))}
+        </nav>
 
-              <div>
-                <label className="block text-coco font-semibold">Address</label>
-                <textarea
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  className="w-full border border-[#e5d0c0] rounded-md px-3 py-2 mt-1 focus:outline-none"
-                />
-              </div>
+        {isLoggedIn ? (
+          <Link to={"/sign-in"}>
+            <button className="cursor-pointer px-8 py-1.5 font-playfair bg-coco text-creme">
+              Login
+            </button>
+          </Link>
+        ) : (
+          <div className="flex gap-6 items-center">
+            <Link to={"/orders"}>
+              <Notebook className="size-6"/>
+            </Link>
 
-              <div>
-                <label className="block text-coco font-semibold">Phone</label>
-                <input
-                  type="text"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full border border-[#e5d0c0] rounded-md px-3 py-2 mt-1 focus:outline-none"
-                />
-              </div>
+            <Link to={"/cart"}>
+              <ShoppingCart className="size-6" />
+            </Link>
 
-              <div className="flex justify-between items-center mt-6">
-                <button
-                  type="button"
-                  onClick={() => setEditing(false)}
-                  className="bg-gray-300 text-coco px-5 py-2 rounded-lg hover:opacity-90 transition"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="bg-wine text-[#F2E6DC] px-5 py-2 rounded-lg hover:opacity-90 transition"
-                >
-                  Save Changes
-                </button>
-              </div>
-            </form>
-          )}
-        </div>
-      </div>
+            <Link to={"/profile"}>
+              <User className="size-6" />
+            </Link>
+
+
+          </div>
+        )}
+      </header>
     </>
   );
 };
 
-export default ProfilePage;
+export default Header;
