@@ -6,9 +6,12 @@ import SignIn from './pages/SignIn'
 import ProductDetails from './pages/ProductDetails'
 import Products from './pages/Products'
 import Cart from './pages/Cart'
-import ProtectedRoute from './ProtectedRoute'
+import ProtectedRoute from './protected routes/ProtectedRoute'
 import OrdersPage from './pages/OrdersPage'
 import ProfilePage from './pages/ProfilePage'
+import AdminDashboard from './pages/AdminDashboard'
+import ProtectedAdminRoute from './protected routes/ProtectedAdminRoute'
+
 
 
 const App: React.FC = () => {
@@ -20,20 +23,29 @@ const App: React.FC = () => {
         <Route path='/sign-in' element={<SignIn />}></Route>
         <Route path='/products' element={<Products />}></Route>
         <Route path='/product/:id' element={<ProductDetails />}></Route>
+
         <Route path='/cart' element={
           <ProtectedRoute>
             <Cart />
           </ProtectedRoute>
         }></Route>
+
         <Route path='/orders' element={
           <ProtectedRoute>
             <OrdersPage />
           </ProtectedRoute>
         }></Route>
+
         <Route path='/profile' element={
           <ProtectedRoute>
             <ProfilePage />
           </ProtectedRoute>
+        }></Route>
+
+        <Route path='/admin' element={
+          <ProtectedAdminRoute>
+            <AdminDashboard />
+          </ProtectedAdminRoute>
         }></Route>
       </Routes>
     </>
