@@ -46,7 +46,7 @@ const Header: React.FC = () => {
           ))}
         </nav>
 
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <Link to={"/sign-in"}>
             <button className="cursor-pointer px-8 py-1.5 font-playfair bg-coco text-creme">
               Login

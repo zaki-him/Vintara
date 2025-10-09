@@ -2,6 +2,9 @@ import express from 'express'
 import Stripe from 'stripe'
 import protect from '../Middlewares/protect.js'
 import Cart from '../Modules/cart.js'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const checkoutRouter = express.Router()
 const stripe = new Stripe(process.env.STRIPE_API_SECRET_KEY) // connect with Stripe

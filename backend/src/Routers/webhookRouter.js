@@ -3,6 +3,9 @@ import Stripe from "stripe";
 import bodyParser from "body-parser";
 import Cart from "../Modules/cart.js";
 import Order from "../Modules/order.js";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const webhookRouter = express.Router();
 const stripe = new Stripe(process.env.STRIPE_API_SECRET_KEY);
