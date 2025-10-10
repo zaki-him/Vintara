@@ -22,11 +22,11 @@ const Home: React.FC = () => {
             details, we bring back the charm of yesterday for today's world.
           </p>
 
-          <Link to={"/#about"}>
+          <a href={"/#about"}>
             <button className="cursor-pointer font-playfair w-40 py-2 bg-wine text-[#F2E6DC]">
               Learn More
             </button>
-          </Link>
+          </a>
         </div>
 
         <div className="h-96 w-[355px] flex justify-center">
@@ -83,22 +83,7 @@ const Home: React.FC = () => {
           <div></div>
         </div>
       </section>
-
-      {/*Best products section */}
-      <section className="px-14 pb-10 flex">
-        <div className="flex flex-col gap-3 w-72">
-          <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">
-            Best Seller Product
-          </h1>
-          <p className="text-[16px] md:text-[18px] font-playfair">
-            Step into our best sellers — timeless pieces that our community
-            can’t get enough of. These classics have been loved, worn, and
-            treasured, and they continue to stand the test of time.
-          </p>
-        </div>
-        <div></div>
-      </section>
-
+      
       <section className="flex flex-col items-center gap-6 bg-white py-10 px-10">
           <h1 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-coco">What People Say About Us</h1>
           <p className="text-[16px] md:text-[18px] font-playfair">See what our customers are saying about their favorite vintage finds.</p>
