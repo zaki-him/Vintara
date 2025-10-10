@@ -1,20 +1,40 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import axios from "axios";
 
 const SignIn: React.FC = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Login Data:", formData);
-    // TODO: connect with backend login
+    
+    try {
+      const res = await axios.post("http://localhost:3000/auth/sign-in",
+        {
+          ...formData
+        }
+      )
+
+      localStorage.setItem("token", res.data.token)
+      localStorage.setItem("user", JSON.stringify(res.data))
+
+      navigate('/')
+    } catch (error: any) {
+      if (error.response) {
+        setError(error.response.data.message || "Something went wrong");
+      } else {
+        setError("Server error, please try again later");
+      }
+    }
   };
 
   return (

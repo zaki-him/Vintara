@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from 'cors'
 import connectDB from "./config/db.js";
 import authRouter from "./Routers/authRouter.js";
 import userRouter from "./Routers/userRouter.js";
@@ -12,6 +13,11 @@ import webhookRouter from "./Routers/webhookRouter.js";
 dotenv.config();
 
 const server = express();
+
+server.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}))
 
 server.use('/webhook', webhookRouter)
 server.use(express.json())

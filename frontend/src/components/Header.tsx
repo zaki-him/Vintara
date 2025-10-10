@@ -1,6 +1,6 @@
-import { Notebook, ShoppingCart, User } from "lucide-react";
+import { LogOut, Notebook, ShoppingCart, User } from "lucide-react";
 import React from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Header: React.FC = () => {
   const links = [
@@ -22,9 +22,17 @@ const Header: React.FC = () => {
     },
   ];
 
+  const navigate = useNavigate()
+
   //check login status
   const user = localStorage.getItem("user");
   const isLoggedIn = !!user; //convert the value into a boolean
+
+  const handleLogOut = () => {
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    navigate('/')
+  }
 
   return (
     <>
@@ -66,7 +74,12 @@ const Header: React.FC = () => {
               <User className="size-6" />
             </Link>
 
-
+            <button 
+              className="cursor-pointer"
+              onClick={handleLogOut}  
+            >
+              <LogOut className="size-6 text-red-500 hover:text-red-900"/>
+            </button>
           </div>
         )}
       </header>

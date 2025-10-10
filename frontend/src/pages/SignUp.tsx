@@ -23,7 +23,7 @@ const SignUp: React.FC = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:3000/sign-up", {
+      const res = await axios.post("http://localhost:3000/auth/sign-up", {
         ...formData,
       });
 
